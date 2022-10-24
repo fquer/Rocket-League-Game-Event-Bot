@@ -101,11 +101,15 @@ def playGame():
         sleep(keySleep)
         keyboard.release(throttleKey)
         keyboard.release(steerKey)
+        pag.click(button='right')
         sleep(PLAY_GAME_SLEEP)
 
         if getMatchStatus() == 'TimeToFF':
             forfeitMatch()
             waitForFindGame()
+            return True
+        elif findItem('playlist'):
+            waitForNewGame()
             return True
 
 def forfeitMatch():
